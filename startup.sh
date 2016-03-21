@@ -12,9 +12,9 @@ function _mongo() {
 EOF
 }
 
-res="-1"
+res=-1
 
-while [ ${res} -ne 0 ] && [ ${res} -ne 1 ]; do
+while [ ${res} -lt 0 ]; do
     res=$(_mongo "rs.initiate().ok")
     sleep 1
 done
@@ -43,7 +43,7 @@ expected_result="true"
 
 while true;
 do
-  if [ "${is_master_result}" = "$is_master_result" ] ; then
+  if [ "${is_master_result}" != "${expected_result}" ] ; then
     is_master_result=$(_mongo "rs.isMaster().ismaster")
     echo "Waiting for Mongod node to assume primary status..."
     sleep 3
