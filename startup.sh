@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mongo="${MONGO:-mongo}"
-mongoport="${MONGOPORT:-27017}"
+mongo="${MONGO_SERVICE_HOST:-mongo}"
+mongoport="${MONGO_SERVICE_PORT:-27017}"
 elasticsearch="${ELASTICSEARCH:-elasticsearch}"
 elasticport="${ELASTICPORT:-9200}"
 

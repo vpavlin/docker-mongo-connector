@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: mongo-connector
+  name: mongo-connector
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: database
+        name: mongo-connector
+    spec:
+      containers:
+      - image: docker-registry.usersys.redhat.com/cucos/mongo-connector
+        name: mongo-connector
+        env:
+        - name: "ELASTICSEARCH"
+          value: "elasticsearch.perf.lab.eng.bos.redhat.com"
+        - name: "ELASTICPORT"
+          value: "80"
+    nodeSelector:
+        node: master
+
